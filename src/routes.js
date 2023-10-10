@@ -62,11 +62,7 @@ export const routes = [
     handler: (req, res) => {
       const { id } = req.params
 
-      const [task] = database.select(
-        'tasks',
-        { id },
-        { searchByExactMatch: true },
-      )
+      const [task] = database.findUnique('tasks', { id })
 
       if (!task) {
         return res
