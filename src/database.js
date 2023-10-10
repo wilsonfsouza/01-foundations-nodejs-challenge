@@ -19,7 +19,7 @@ export class Database {
     fs.writeFile(databasePath, JSON.stringify(this.#database, null, 2))
   }
 
-  select(table, search, options) {
+  select(table, search, options = { searchByExactMatch: false }) {
     const { searchByExactMatch } = options
     let data = this.#database[table] ?? []
 
