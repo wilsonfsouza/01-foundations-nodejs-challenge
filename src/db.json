@@ -1,1 +1,20 @@
-{}
+{
+  "tasks": [
+    {
+      "id": "37e370e9-eda9-4ff0-ad65-0e94ae4b28f0",
+      "title": "Water indoor plants",
+      "description": "There are two indoor plants in the house. You must water them once a week.",
+      "completed_at": null,
+      "created_at": "2023-10-10T04:16:19.070Z",
+      "updated_at": "2023-10-10T04:16:19.070Z"
+    },
+    {
+      "id": "f5eaddad-3c09-4a9c-9ff8-a460a1a1b292",
+      "title": "Play with cat",
+      "description": "The cat goes insane if you do not play with it. You must play with it three times a day to save your furniture and peace of mind.",
+      "completed_at": null,
+      "created_at": "2023-10-10T04:21:01.096Z",
+      "updated_at": "2023-10-10T04:21:01.096Z"
+    }
+  ]
+}
