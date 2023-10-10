@@ -62,6 +62,20 @@ export const routes = [
     handler: (req, res) => {
       const { id } = req.params
 
+      const [task] = database.select(
+        'tasks',
+        { id },
+        { searchByExactMatch: true },
+      )
+
+      if (!task) {
+        return res
+          .writeHead(404)
+          .end(
+            JSON.stringify({ message: `task with id:'${id}' does not exist` }),
+          )
+      }
+
       database.delete('tasks', id)
 
       return res.writeHead(204).end()
