@@ -19,12 +19,16 @@ export class Database {
     fs.writeFile(databasePath, JSON.stringify(this.#database, null, 2))
   }
 
-  select(table, search) {
+  select(table, search, options) {
+    const { searchByExactMatch } = options
     let data = this.#database[table] ?? []
 
     if (search) {
       data = data.filter((row) => {
         return Object.entries(search).some(([key, value]) => {
+          if (searchByExactMatch) {
+            return row[key].toLowerCase() === value.toLowerCase()
+          }
           return row[key].toLowerCase().includes(value.toLowerCase())
         })
       })
