@@ -84,6 +84,16 @@ export const routes = [
       const { id } = req.params
       const { title, description } = req.body
 
+      const [task] = database.findUnique('tasks', { id })
+
+      if (!task) {
+        return res
+          .writeHead(404)
+          .end(
+            JSON.stringify({ message: `task with id:'${id}' does not exist` }),
+          )
+      }
+
       if (!title || !description) {
         return res.writeHead(400).end(
           JSON.stringify({
@@ -92,13 +102,13 @@ export const routes = [
         )
       }
 
-      const task = {
+      const taskToBeUpdated = {
         title,
         description,
         updated_at: new Date(),
       }
 
-      database.update('tasks', id, task)
+      database.update('tasks', id, taskToBeUpdated)
 
       return res.writeHead(204).end()
     },
