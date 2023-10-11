@@ -113,4 +113,33 @@ export const routes = [
       return res.writeHead(204).end()
     },
   },
+  {
+    method: 'PATCH',
+    path: buildRoutePath('/tasks/:id/complete'),
+    handler: (req, res) => {
+      const { id } = req.params
+
+      const [task] = database.findUnique('tasks', { id })
+
+      if (!task) {
+        return res
+          .writeHead(404)
+          .end(
+            JSON.stringify({ message: `task with id:'${id}' does not exist` }),
+          )
+      }
+
+      const isTaskAlreadyCompleted = !!task.completed_at
+
+      const toggleTaskStatus = isTaskAlreadyCompleted ? null : new Date()
+
+      const taskToBeUpdated = {
+        completed_at: toggleTaskStatus,
+      }
+
+      database.update('tasks', id, taskToBeUpdated)
+
+      return res.writeHead(204).end()
+    },
+  },
 ]
