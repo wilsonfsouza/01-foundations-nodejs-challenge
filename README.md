@@ -1,14 +1,17 @@
-# About the challenge
-Create an API to manage your tasks without using a framework.
+# About the project
+> It requires the LTS version of node (>= v.18.17.1).
+
+This project has an API to manage your tasks without using a framework for Nodejs. It also allows to import a local csv using a Stream to populate a fake database.
+
 
 ## Functionalities
-- [ ] Create a task
-- [ ] List all tasks
-- [ ] Update a task using its `id`
-- [ ] Remove a task using its `id`
-- [ ] Import multiple tasks via a `csv` file
+- [X] Create a task
+- [X] List all tasks
+- [X] Update a task using its `id`
+- [X] Remove a task using its `id`
+- [X] Import multiple tasks via a `csv` file
 
-## Task structure
+## Task Model
 | Field | Description |
 | --- | ----------- |
 | `id` | Unique identifier for each task. |
@@ -29,7 +32,7 @@ Create an API to manage your tasks without using a framework.
   | `POST` | `/tasks` |
 
   #### Description
-  Create a new task in the database, sending the fields `title` and `description` via the request body. 
+  Creates a new task in the database, sending the fields `title` and `description` via the request body. 
 
   After creating a task, the fields `id`, `created_at`, `updated_at`, and `completed_at` will be filled automatically
   <hr>
@@ -44,7 +47,7 @@ Create an API to manage your tasks without using a framework.
   | `GET` | `/tasks` |
 
   #### Description
-  List all tasks stored in the database. It can also permorm a search, filtering tasks by `title` and `description`
+  Lists all tasks stored in the database. It can also permorm a search, filtering tasks by `title` and `description`
   <hr>
 </details>
 
@@ -57,7 +60,7 @@ Create an API to manage your tasks without using a framework.
   | `PUT` | `/tasks/:id` |
 
   #### Description
-  Update a task using its `id`. In the request `body`, you will receive `title` and/or `description` to be updated.
+  Updates a task using its `id`. In the request `body`, you will receive `title` and/or `description` to be updated.
 
   If only `title` was received, `description` must not change and vice-versa.
 
@@ -104,6 +107,6 @@ Create an API to manage your tasks without using a framework.
   | `POST` | `/tasks` |
 
   #### Description
-  https://efficient-sloth-d85.notion.site/Cria-o-via-CSV-com-Stream-21ba6d279991473792787d9265212181
+  Using the package `csv-parse`, this function creates a readable Stream for the csv to read it by parts and populate the database.
   <hr>
 </details>
